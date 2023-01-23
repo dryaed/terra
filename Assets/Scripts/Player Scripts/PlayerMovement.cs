@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    bool cursorLocked = true;
 
     public GameObject cam1;
     public GameObject cam2;
@@ -33,20 +35,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // gravity
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
+        // x z movement
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        // movement normalization fixes the bug where your diagonal speed is higher than straight, but it introduces a gay delay after you stop pressing the movement keys
         //Vector3 move = (transform.right * x + transform.forward * z).normalized;
-        Vector3 move = (transform.right * x + transform.forward * z);
         //move.Normalize();
+        Vector3 move = (transform.right * x + transform.forward * z);
 
+        // run
         if (Input.GetKey(KeyCode.LeftShift))
         {
             controller.Move(move * speed * runningModifier * Time.deltaTime);
@@ -55,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
         }
 
-
+        // jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -66,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         
 
         
-
+        // switch camera mode between fps and tps
         if (Input.GetKeyDown(KeyCode.C))
         {
             isFPS = !isFPS;
@@ -80,6 +85,20 @@ public class PlayerMovement : MonoBehaviour
                 cam1.SetActive(true);
                 cam2.SetActive(false);
             }
+        }
+        // Left alt allows to toggle mouse display
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            if (cursorLocked == true)
+            {
+                cursorLocked = false;
+                Cursor.lockState = CursorLockMode.None;
+            } else
+            {
+                cursorLocked = true;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            
         }
     }
 }

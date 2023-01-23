@@ -8,6 +8,7 @@ public class ItemPickup : MonoBehaviour
 {
     public float PickupRadius = 1f;
     public InventoryItemData ItemData;
+    public int stackSize = 1;
 
     private SphereCollider myCollider;
 
@@ -24,7 +25,9 @@ public class ItemPickup : MonoBehaviour
 
         if (!inventory) return;
 
-        if (inventory.InventorySystem.AddToInventory(ItemData, 1))
+        Debug.Log($"ID: {ItemData.ID}\nDisplay Name: {ItemData.DisplayName}\nDescription: {ItemData.Description}\nMaximum Stack Size: {ItemData.MaxStackSize}");
+
+        if (inventory.InventorySystem.AddToInventory(ItemData, stackSize))
         {
             Destroy(this.gameObject);
         }
