@@ -40,8 +40,6 @@ public class InventorySystem // The full inventory system that contains holders
                 }
             }           
         }
-
-        Debug.Log($"the itemToAdd variable is {itemToAdd}");
         
         if (HasFreeSlot(out InventorySlot freeSlot)) // finds the first available free slot
         {
@@ -55,16 +53,16 @@ public class InventorySystem // The full inventory system that contains holders
         return false; // can't add item to inventory
     }
 
-    public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> inventorySlot)
+    public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> inventorySlot) // searches for a slot that has the same itemData and returns it
     {
         inventorySlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList(); //Linq magic
 
-        return inventorySlot == null ? false : true;
+        return inventorySlot == null ? false : true; // if there is no such slot, return false
     }
 
-    public bool HasFreeSlot(out InventorySlot freeSlot)
+    public bool HasFreeSlot(out InventorySlot freeSlot) // searches for a slot that has no ItemData in it
     {
         freeSlot = InventorySlots.FirstOrDefault(slot => slot.ItemData == null);
-        return freeSlot == null ? false : true;
+        return freeSlot == null ? false : true; // if there is no free slot, return false
     }
 }

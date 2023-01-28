@@ -58,12 +58,6 @@ public class InventorySlot // this represents a single slot of an inventory
     // Check if there is room left in target stack
     public bool RoomLeftInStack(int amountToAdd) 
     {
-        amountToAdd = 1;
-        //Debug.Log($"this dumbfuck value is {amountToAdd}");
-        //Debug.Log($"stackSize is {stackSize}");
-        //Debug.Log($"Trying to add a {ItemData}");
-        //Debug.Log($"MaxStackSize is {ItemData.Description}");
-
         if (stackSize + amountToAdd <= itemData.MaxStackSize) return true; // if target stack size + amout to add is equals or less than max stack size there is room left in the stack
         //if (stackSize + amountToAdd <= 5) return true;
         //else return false; // else no room is left in the stack

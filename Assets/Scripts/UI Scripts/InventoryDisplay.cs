@@ -48,7 +48,7 @@ public abstract class InventoryDisplay : MonoBehaviour
             } else
             {
                 mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot); // copy clicked slot to mouse slot
-                clickedUISlot.ClearSlot(); // clear clicked slot
+                clickedUISlot.ClearUISlot(); // clear clicked slot
                 return; // end function
             }          
         }
@@ -60,7 +60,7 @@ public abstract class InventoryDisplay : MonoBehaviour
 
             clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot); // copy mouse slot to clicked slot
             clickedUISlot.UpdateUISlot(); // update ui
-            mouseInventoryItem.ClearSlot(); // clear mouse slot
+            mouseInventoryItem.ClearUISlot(); // clear mouse slot
             return; // end function
         }
         // Clicked slot has an item & mouse has an item
@@ -74,7 +74,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot); // add mouse slot to clicked slot (their combination is not larger than max stack)
                 clickedUISlot.UpdateUISlot(); // update ui
 
-                mouseInventoryItem.ClearSlot(); // clear mouse
+                mouseInventoryItem.ClearUISlot(); // clear mouse
                 return;
             }
             // Both items are the same and there is NO room in the stack
@@ -88,7 +88,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                     clickedUISlot.UpdateUISlot(); // update ui
 
                     var newItem = new InventorySlot(mouseInventoryItem.AssignedInventorySlot.ItemData, remainingOnMouse); // new item is the new mouse slot after the transfer
-                    mouseInventoryItem.ClearSlot(); // clear mouse slot
+                    mouseInventoryItem.ClearUISlot(); // clear mouse slot
                     mouseInventoryItem.UpdateMouseSlot(newItem); // add the new item
                     return;
                 }
@@ -110,9 +110,9 @@ public abstract class InventoryDisplay : MonoBehaviour
     private void SwapSlots(inventorySlot_UI clickedUISlot)
     {
         var clonedSlot = new InventorySlot(mouseInventoryItem.AssignedInventorySlot.ItemData, mouseInventoryItem.AssignedInventorySlot.StackSize); // clone mouse slot
-        mouseInventoryItem.ClearSlot(); // clear mouse slot
+        mouseInventoryItem.ClearUISlot(); // clear mouse slot
         mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot); // copy clicked slot to mouse slot
-        clickedUISlot.ClearSlot(); // clear clicked slot
+        clickedUISlot.ClearUISlot(); // clear clicked slot
         clickedUISlot.AssignedInventorySlot.AssignItem(clonedSlot); // copy cloned mouse slot to clicked slot
         clickedUISlot.UpdateUISlot(); // update ui
     }

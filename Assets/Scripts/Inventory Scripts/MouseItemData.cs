@@ -17,7 +17,7 @@ public class MouseItemData : MonoBehaviour
         ItemCount.text = "";
     }
 
-    public void UpdateMouseSlot(InventorySlot invSlot) 
+    public void UpdateMouseSlot(InventorySlot invSlot) // updates slot ui
     {
         AssignedInventorySlot.AssignItem(invSlot);
         ItemSprite.sprite = invSlot.ItemData.Icon;
@@ -34,20 +34,20 @@ public class MouseItemData : MonoBehaviour
 
             if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUIObject())
             {
-                ClearSlot();
+                ClearUISlot();
             }
         }
     }
 
-    public void ClearSlot()
+    public void ClearUISlot() // clear the ui for this slot
     {
-        AssignedInventorySlot.ClearSlot();
+        AssignedInventorySlot.ClearSlot(); 
         ItemSprite.color = Color.clear;
         ItemSprite.sprite = null;
         ItemCount.text = "";
     }
 
-    public static bool IsPointerOverUIObject()
+    public static bool IsPointerOverUIObject() // checks if the mouse pointer is above a ui object
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = Mouse.current.position.ReadValue();

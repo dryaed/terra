@@ -6,12 +6,12 @@ using UnityEngine.Events;
 [System.Serializable]
 public class InventoryHolder : MonoBehaviour
 {
-    [SerializeField] private int inventorySize;
-    [SerializeField] protected InventorySystem inventorySystem;
+    [SerializeField] private int inventorySize; // how many slots does this holder have
+    [SerializeField] protected InventorySystem inventorySystem; // which inventory system is this a part of
 
-    public InventorySystem InventorySystem => inventorySystem;
+    public InventorySystem InventorySystem => inventorySystem; // getter
 
-    public static UnityAction<InventorySystem> OnDynamicInventoryDisplayRequested;
+    public static UnityAction<InventorySystem> OnDynamicInventoryDisplayRequested; //thefuk
 
     private void Awake()
     {

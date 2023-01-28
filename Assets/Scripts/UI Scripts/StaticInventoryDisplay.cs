@@ -13,7 +13,7 @@ public class StaticInventoryDisplay : InventoryDisplay
     {
         base.Start();
 
-        if (inventoryHolder != null)
+        if (inventoryHolder != null) // assign inventory to this object
         {
             inventorySystem = inventoryHolder.InventorySystem;
             inventorySystem.OnInventorySlotChanged += UpdateSlot;
@@ -22,7 +22,7 @@ public class StaticInventoryDisplay : InventoryDisplay
 
         AssignSlot(inventorySystem);
     }
-    public override void AssignSlot(InventorySystem inventoryToDisplay)
+    public override void AssignSlot(InventorySystem inventoryToDisplay) // assign slots to inventory
     {
         slotDictionary = new Dictionary<inventorySlot_UI, InventorySlot>();
 
