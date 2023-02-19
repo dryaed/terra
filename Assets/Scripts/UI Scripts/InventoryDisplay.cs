@@ -10,16 +10,16 @@ public abstract class InventoryDisplay : MonoBehaviour
 {
     [SerializeField] MouseItemData mouseInventoryItem;
     protected InventorySystem inventorySystem;
-    protected Dictionary<inventorySlot_UI, InventorySlot> slotDictionary;
+    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary; // pair up UI slots and data slots
     public InventorySystem InventorySystem => inventorySystem;
-    public Dictionary<inventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
+    public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
 
     protected virtual void Start()
     {
 
     }
 
-    public abstract void AssignSlot(InventorySystem inventoryToDisplay);
+    public abstract void AssignSlot(InventorySystem inventoryToDisplay); // for child classes
 
     protected virtual void UpdateSlot(InventorySlot updatedSlot)
     {
@@ -32,9 +32,9 @@ public abstract class InventoryDisplay : MonoBehaviour
         }
     }
 
-    public void SlotClicked(inventorySlot_UI clickedUISlot)
+    public void SlotClicked(InventorySlot_UI clickedUISlot)
     {
-        bool isShiftPressed = Keyboard.current.leftShiftKey.isPressed; // check if the LShift is pressed
+        bool isShiftPressed = Keyboard.current.leftCtrlKey.isPressed; // check if the LShift is pressed
 
         // Clicked slot has an item & mouse is empty = pick up item
 
@@ -49,7 +49,7 @@ public abstract class InventoryDisplay : MonoBehaviour
             {
                 mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot); // copy clicked slot to mouse slot
                 clickedUISlot.ClearUISlot(); // clear clicked slot
-                return; // end function
+                return;
             }          
         }
 
@@ -61,7 +61,7 @@ public abstract class InventoryDisplay : MonoBehaviour
             clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot); // copy mouse slot to clicked slot
             clickedUISlot.UpdateUISlot(); // update ui
             mouseInventoryItem.ClearUISlot(); // clear mouse slot
-            return; // end function
+            return;
         }
         // Clicked slot has an item & mouse has an item
         if (clickedUISlot.AssignedInventorySlot.ItemData != null && mouseInventoryItem.AssignedInventorySlot.ItemData != null)
@@ -107,11 +107,13 @@ public abstract class InventoryDisplay : MonoBehaviour
         
     }
 
-    private void SwapSlots(inventorySlot_UI clickedUISlot)
+    private void SwapSlots(InventorySlot_UI clickedUISlot)
     {
         var clonedSlot = new InventorySlot(mouseInventoryItem.AssignedInventorySlot.ItemData, mouseInventoryItem.AssignedInventorySlot.StackSize); // clone mouse slot
         mouseInventoryItem.ClearUISlot(); // clear mouse slot
+
         mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot); // copy clicked slot to mouse slot
+
         clickedUISlot.ClearUISlot(); // clear clicked slot
         clickedUISlot.AssignedInventorySlot.AssignItem(clonedSlot); // copy cloned mouse slot to clicked slot
         clickedUISlot.UpdateUISlot(); // update ui

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 
-public class inventorySlot_UI : MonoBehaviour
+public class InventorySlot_UI : MonoBehaviour
 {
     [SerializeField] private Image itemSprite; // visual item representation
     [SerializeField] private TMP_Text itemCount; // visual stack size representation
@@ -12,7 +12,7 @@ public class inventorySlot_UI : MonoBehaviour
     private Button button; // le buttone
 
     public InventorySlot AssignedInventorySlot => assignedInventorySlot; //getter
-    public InventoryDisplay ParentDisplay { get; private set; } // contsructor
+    public InventoryDisplay ParentDisplay { get; private set; } // constructor
 
     private void Awake()
     {
@@ -59,6 +59,6 @@ public class inventorySlot_UI : MonoBehaviour
 
     public void OnUISlotClick()
     {
-        ParentDisplay?.SlotClicked(this);
+        ParentDisplay?.SlotClicked(this); 
     }
 }

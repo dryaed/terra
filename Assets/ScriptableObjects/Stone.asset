@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   DisplayName: Stone
-  Description: Formerly a piece of rock formation, now a materia for you to use.
+  Description: Formerly a piece of rock formation, now a material for you to use.
   Icon: {fileID: 21300000, guid: d2238e3b2d2d1f64a8555f11ce2dc881, type: 3}
-  MaxStackSize: 6
+  MaxStackSize: 5

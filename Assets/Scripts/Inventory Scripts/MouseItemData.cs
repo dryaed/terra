@@ -28,6 +28,7 @@ public class MouseItemData : MonoBehaviour
 
     private void Update()
     {
+        // ?TODO: controller support
         if (AssignedInventorySlot.ItemData != null)
         {
             transform.position = Mouse.current.position.ReadValue();
@@ -35,6 +36,7 @@ public class MouseItemData : MonoBehaviour
             if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUIObject())
             {
                 ClearUISlot();
+                // TODO: drop the item into the world
             }
         }
     }

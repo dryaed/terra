@@ -25,9 +25,10 @@ public class InventorySystem // The full inventory system that contains holders
         }
     }
 
+    // this doesn't account for splitting picked up stacks properly, so if a picked up stack can't be added to an existing one without any leftovers it will just place it in a new slot
+    // don't forget to subtract from the inworld item when the stack is more than what the player can take!!!
     public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd) // add an item to the inventory
     {
-        amountToAdd = 1;
         if (ContainsItem(itemToAdd, out List<InventorySlot> inventorySlot)) // checks if there is a slot with the same item
         {
             foreach (var slot in inventorySlot) // for every slot in the inventory
@@ -49,20 +50,22 @@ public class InventorySystem // The full inventory system that contains holders
                 OnInventorySlotChanged?.Invoke(freeSlot); //update ui
                 return true;
             //}
+
+            
         }
         return false; // can't add item to inventory
     }
 
     public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> inventorySlot) // searches for a slot that has the same itemData and returns it
     {
-        inventorySlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList(); //Linq magic
+        inventorySlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList(); // get a list of inventory slots in InventorySlots that have the same ItemData (Linq magic)
 
         return inventorySlot == null ? false : true; // if there is no such slot, return false
     }
 
     public bool HasFreeSlot(out InventorySlot freeSlot) // searches for a slot that has no ItemData in it
     {
-        freeSlot = InventorySlots.FirstOrDefault(slot => slot.ItemData == null);
+        freeSlot = InventorySlots.FirstOrDefault(slot => slot.ItemData == null); // get first free slot
         return freeSlot == null ? false : true; // if there is no free slot, return false
     }
 }
