@@ -699,11 +699,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 2
-  cloudProjectId: 
+  cloudProjectId: 0df7af41-8d0a-4d56-8dcc-0ba4bd04ef5c
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Terra
+  organizationId: unity_pu0ztgffstxxya
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
