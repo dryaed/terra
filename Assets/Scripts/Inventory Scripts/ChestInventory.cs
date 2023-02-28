@@ -24,11 +24,13 @@ public class ChestInventory : InventoryHolder
 
     protected override void LoadInventory(SaveData data)
     {
+        
         if (data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out InventorySaveData chestData))
         {
             this.primaryInventorySystem = chestData.InventorySystem;
             this.transform.SetPositionAndRotation(chestData.Position, chestData.Rotation);
         }
+        
     }
 }
 

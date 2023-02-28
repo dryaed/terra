@@ -11,7 +11,9 @@ public class PlayerInventoryHolder : InventoryHolder
 
     private void Start()
     {
+        //SaveGameManager.data.playerData.PlayerInventorySystem = primaryInventorySystem;
         SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
+        //Debug.Log(SaveGameManager.data.playerData.PlayerInventorySystem);
     }
 
     // Update is called once per frame
@@ -22,11 +24,14 @@ public class PlayerInventoryHolder : InventoryHolder
 
     protected override void LoadInventory(SaveData data)
     {
+        
         if (data.playerInventory.InventorySystem != null)
         {
+            //this.primaryInventorySystem = data.playerData.PlayerInventorySystem;
             this.primaryInventorySystem = data.playerInventory.InventorySystem;
             OnPlayerInventoryChanged?.Invoke();
         }
+        
     }
 
     public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd) // add an item to the inventory

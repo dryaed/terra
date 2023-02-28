@@ -42,6 +42,7 @@ public class StaticInventoryDisplay : InventoryDisplay
 
         for (int i = 0; i < inventoryHolder.Offset; i++)
         {
+            //Debug.Log("i = "+i+" slots = " + slots[i]);
             slotDictionary.Add(slots[i], inventorySystem.InventorySlots[i]);
             slots[i].Init(inventorySystem.InventorySlots[i]);
         }

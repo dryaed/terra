@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public abstract class InventoryHolder : MonoBehaviour
 {
     [SerializeField] private int inventorySize; // how many slots does this holder have
-    [SerializeField] protected InventorySystem primaryInventorySystem; // which inventory system is this a part of
+    [SerializeField] protected InventorySystem primaryInventorySystem; // 
     [SerializeField] protected int offset = 10;
 
     public int Offset => offset;

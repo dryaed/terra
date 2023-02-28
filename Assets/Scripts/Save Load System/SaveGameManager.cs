@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SaveGameManager : MonoBehaviour
 {
+    public static UnityAction OnSaveGameData;
+
     public static SaveData data;
     //PlayerSaveData playerSaveData = new PlayerSaveData();
 
@@ -17,6 +20,8 @@ public class SaveGameManager : MonoBehaviour
 
     public static void SaveData()
     {
+        OnSaveGameData.Invoke();
+
         var saveData = data;
         //playerSaveData.SavePlayerData();
         SaveLoad.Save(saveData);

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public static class SaveLoad
 {
-    public static UnityAction<SaveData> OnSaveGame;
+    public static UnityAction OnSaveGame;
     public static UnityAction<SaveData> OnLoadGame;
 
     private static string saveDirectory = "/GameSaves/";
@@ -15,7 +15,7 @@ public static class SaveLoad
 
     public static bool Save(SaveData data)
     {
-        OnSaveGame?.Invoke(data);
+        OnSaveGame?.Invoke();
 
         string dir = Application.persistentDataPath + saveDirectory;
 

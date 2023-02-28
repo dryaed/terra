@@ -406,7 +406,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1708273148}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -3028,6 +3028,7 @@ MonoBehaviour:
   inventorySize: 30
   primaryInventorySystem:
     inventorySlots: []
+  offset: 10
 --- !u!114 &663102388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4317,7 +4318,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1708273148}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -6065,7 +6066,7 @@ RectTransform:
   - {fileID: 476903603}
   - {fileID: 2142300164}
   m_Father: {fileID: 1708273148}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7636,6 +7637,7 @@ GameObject:
   - component: {fileID: 1614412878}
   - component: {fileID: 1614412879}
   - component: {fileID: 1614412880}
+  - component: {fileID: 1614412881}
   m_Layer: 0
   m_Name: First Person Player
   m_TagString: Untagged
@@ -7746,12 +7748,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79320682ca738094e95c92a6614a22a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySize: 10
+  inventorySize: 30
   primaryInventorySystem:
     inventorySlots: []
-  secondaryInventorySize: 20
-  secondaryInventorySystem:
-    inventorySlots: []
+  offset: 10
+--- !u!114 &1614412881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614412873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c3566fcbceed244aab1d7f9c1cda9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1618595640
 GameObject:
   m_ObjectHideFlags: 0
@@ -7961,10 +7973,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1182850737}
   - {fileID: 1772601925}
   - {fileID: 891024623}
   - {fileID: 148485569}
+  - {fileID: 1182850737}
   m_Father: {fileID: 1518763075}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7985,7 +7997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c5374efe477234c8470160c6f4496a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chestPanel: {fileID: 891024626}
+  inventoryPanel: {fileID: 891024626}
   playerBackpackPanel: {fileID: 148485572}
 --- !u!1 &1715015141
 GameObject:
@@ -8180,7 +8192,7 @@ RectTransform:
   - {fileID: 143397469}
   - {fileID: 529377718}
   m_Father: {fileID: 1708273148}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9575,6 +9587,7 @@ MonoBehaviour:
   inventorySize: 15
   primaryInventorySystem:
     inventorySlots: []
+  offset: 10
 --- !u!114 &2024573060
 MonoBehaviour:
   m_ObjectHideFlags: 0

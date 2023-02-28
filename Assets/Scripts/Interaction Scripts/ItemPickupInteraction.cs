@@ -46,10 +46,12 @@ public class ItemPickupInteraction : Interactable
 
     private void LoadItemData(SaveData data)
     {
+        
         if (data.collectedItems.Contains(id))
         {
             Destroy(this.gameObject);
         }
+        
     }
 
     private void OnDestroy()

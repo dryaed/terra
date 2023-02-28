@@ -27,7 +27,6 @@ public class InventoryUIController : MonoBehaviour
         PlayerInventoryHolder.OnPlayerInventoryDisplayRequested -= DisplayPlayerInventory;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (inventoryPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) inventoryPanel.gameObject.SetActive(false);
@@ -46,12 +45,4 @@ public class InventoryUIController : MonoBehaviour
         playerBackpackPanel.RefreshDynamicInventory(invToDisplay, offset);
     }
 
-
-    /*
-    void DisplayPlayerBackpack(InventorySystem invToDisplay)
-    {
-        playerBackpackPanel.gameObject.SetActive(true);
-        playerBackpackPanel.RefreshDynamicInventory(invToDisplay);
-    }
-    */
 }
