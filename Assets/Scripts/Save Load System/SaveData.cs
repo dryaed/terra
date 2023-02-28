@@ -12,11 +12,15 @@ public class SaveData
 
     public SerializableDictionary<string, InventorySaveData> chestDictionary;
 
+    //temporary player save, later playerData will be used
+    public InventorySaveData playerInventory;
+
     public SaveData()
     {
         collectedItems = new List<string>();
         activeItems = new SerializableDictionary<string, ItemPickupSaveData>();
         chestDictionary = new SerializableDictionary<string, InventorySaveData>();
+        playerInventory = new InventorySaveData();
         //playerData = new PlayerData();
     }
 }

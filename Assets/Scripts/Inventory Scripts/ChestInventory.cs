@@ -7,7 +7,7 @@ public class ChestInventory : InventoryHolder
 {
     public void Niggers()
     {
-        OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem); // calls the DisplayInventory() using the primaryInventorySystem of this specific object 
+        OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem, 0); // calls the DisplayInventory() using the primaryInventorySystem of this specific object 
     }
 
     private void Start()
@@ -22,34 +22,13 @@ public class ChestInventory : InventoryHolder
         SaveLoad.OnLoadGame += LoadInventory;
     }
 
-    private void LoadInventory(SaveData data)
+    protected override void LoadInventory(SaveData data)
     {
         if (data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out InventorySaveData chestData))
         {
-            this.primaryInventorySystem = chestData.invSystem;
-            this.transform.SetPositionAndRotation(chestData.position, chestData.rotation);
+            this.primaryInventorySystem = chestData.InventorySystem;
+            this.transform.SetPositionAndRotation(chestData.Position, chestData.Rotation);
         }
     }
 }
 
-[System.Serializable]
-public struct InventorySaveData
-{
-    public InventorySystem invSystem;
-    public Vector3 position;
-    public Quaternion rotation;
-
-    public InventorySaveData(InventorySystem _invSystem, Vector3 _position, Quaternion _rotation)
-    {
-        invSystem = _invSystem;
-        position = _position;
-        rotation = _rotation;
-    }
-
-    public InventorySaveData(InventorySystem _invSystem)
-    {
-        invSystem = _invSystem;
-        position = Vector3.zero;
-        rotation = Quaternion.identity;
-    }
-}
