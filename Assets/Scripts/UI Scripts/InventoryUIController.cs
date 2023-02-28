@@ -18,11 +18,13 @@ public class InventoryUIController : MonoBehaviour
     private void OnEnable()
     {
         InventoryHolder.OnDynamicInventoryDisplayRequested += DisplayInventory;
+        PlayerInventoryHolder.OnPlayerInventoryDisplayRequested += DisplayPlayerInventory;
     }
 
     private void OnDisable()
     {
         InventoryHolder.OnDynamicInventoryDisplayRequested -= DisplayInventory;
+        PlayerInventoryHolder.OnPlayerInventoryDisplayRequested -= DisplayPlayerInventory;
     }
 
     // Update is called once per frame
@@ -35,7 +37,13 @@ public class InventoryUIController : MonoBehaviour
     void DisplayInventory(InventorySystem invToDisplay, int offset)
     {
         inventoryPanel.gameObject.SetActive(true);
-        inventoryPanel.RefreshDynamicInventory(invToDisplay, 10);
+        inventoryPanel.RefreshDynamicInventory(invToDisplay, offset);
+    }
+
+    void DisplayPlayerInventory(InventorySystem invToDisplay, int offset)
+    {
+        playerBackpackPanel.gameObject.SetActive(true);
+        playerBackpackPanel.RefreshDynamicInventory(invToDisplay, offset);
     }
 
 

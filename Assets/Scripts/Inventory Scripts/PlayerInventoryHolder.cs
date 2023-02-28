@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerInventoryHolder : InventoryHolder
 {    
     public static UnityAction OnPlayerInventoryChanged;
+    public static UnityAction<InventorySystem, int> OnPlayerInventoryDisplayRequested;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class PlayerInventoryHolder : InventoryHolder
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.iKey.wasPressedThisFrame) OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
+        if (Keyboard.current.iKey.wasPressedThisFrame) OnPlayerInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
     }
 
     protected override void LoadInventory(SaveData data)
