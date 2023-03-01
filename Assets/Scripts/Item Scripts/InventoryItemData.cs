@@ -15,4 +15,5 @@ public class InventoryItemData : ScriptableObject
     public string Description; // Item description for display purposes
     public Sprite Icon; // Item sprite image for display purposes
     public int MaxStackSize; // Item Maximum Stack size for the inventory system
+    public GameObject ItemPrefab; // object that is used to spawn the item in world
 }

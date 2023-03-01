@@ -18,6 +18,8 @@ public class InventorySlot_UI : MonoBehaviour
     {
         ClearUISlot(); // clear the slot on creation
 
+        itemSprite.preserveAspect = true;
+
         button = GetComponent<Button>(); 
         button?.onClick.AddListener(OnUISlotClick); // adds on click action
 
@@ -59,6 +61,6 @@ public class InventorySlot_UI : MonoBehaviour
 
     public void OnUISlotClick()
     {
-        ParentDisplay?.SlotClicked(this); 
+        ParentDisplay?.SlotClicked(this);
     }
 }

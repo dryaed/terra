@@ -45,19 +45,15 @@ public class PlayerMovement : MonoBehaviour
         // x z movement
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
-        // movement normalization fixes the bug where your diagonal speed is higher than straight, but it introduces a gay delay after you stop pressing the movement keys
-        //Vector3 move = (transform.right * x + transform.forward * z).normalized;
-        //move.Normalize();
         Vector3 move = (transform.right * x + transform.forward * z);
 
         // run
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            controller.Move(move * speed * runningModifier * Time.deltaTime);
+            controller.Move(runningModifier * speed * Time.deltaTime * move);
         } else
         {
-            controller.Move(move * speed * Time.deltaTime);
+            controller.Move(speed * Time.deltaTime * move);
         }
 
         // jump

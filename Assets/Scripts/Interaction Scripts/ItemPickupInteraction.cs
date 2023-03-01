@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UniqueID))]
 public class ItemPickupInteraction : Interactable
@@ -8,25 +11,46 @@ public class ItemPickupInteraction : Interactable
     public InventoryItemData ItemData; // what is the item
     public int stackSize; // how many of the item is there
 
-    public GameObject player;
+    [SerializeField] private float _rotationSpeed = 80.0f;
+    [SerializeField] private float _bobIntensity = 0.5f;
+
+    private GameObject player;
+
+    private Vector3 pos;
 
     [SerializeField] private ItemPickupSaveData saveData;
     private string id;
+    [SerializeField] private AnimationCurve itemAnimationCurve;
+
     private void Awake()
     {
-        id = GetComponent<UniqueID>().ID;
+        
         saveData = new ItemPickupSaveData(ItemData, stackSize, transform.position, transform.rotation);
         SaveLoad.OnLoadGame += LoadItemData;
     }
     void Start()
     {
-        player = GameObject.Find("First Person Player"); // gets the player game object
+        id = GetComponent<UniqueID>().ID;
         SaveGameManager.data.activeItems.Add(id, saveData);
+
+        player = GameObject.Find("First Person Player"); // gets the player game object
+        pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        itemAnimationCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, _bobIntensity))
+        {
+            preWrapMode = WrapMode.PingPong,
+            postWrapMode = WrapMode.PingPong
+        };
+    }
+
+    private void Update()
+    {
+        transform.Rotate(_rotationSpeed * Time.deltaTime * Vector3.up);
+        transform.position = pos + new Vector3(0, itemAnimationCurve.Evaluate(Time.time % itemAnimationCurve.length), 0);
     }
 
     public override string GetDescription() // displays next to the crosshair
     {
-        //string output = "Press [E] to pick up this item.";
         string output = ItemData.DisplayName.ToString() + " x" + stackSize;
         return output;
     }
@@ -46,7 +70,6 @@ public class ItemPickupInteraction : Interactable
 
     private void LoadItemData(SaveData data)
     {
-        
         if (data.collectedItems.Contains(id))
         {
             Destroy(this.gameObject);
