@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class InventoryItemData : ScriptableObject
 {
-    public int ID; // Item IDentification number
+    public int ID = -1; // Item IDentification number
     public string DisplayName; // Item name for display purposes
     [TextArea(4, 4)]
     public string Description; // Item description for display purposes
