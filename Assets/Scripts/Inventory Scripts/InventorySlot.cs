@@ -61,14 +61,9 @@ public class InventorySlot : ISerializationCallbackReceiver // this represents a
     }
 
     // Check if there is room left in target stack
-    public bool RoomLeftInStack(int amountToAdd) 
+    public bool RoomLeftInStack(int amountToAdd)
     {
-        if (stackSize + amountToAdd <= itemData.MaxStackSize) return true; // if target stack size + amout to add is equals or less than max stack size there is room left in the stack
-        //if (stackSize + amountToAdd <= 5) return true;
-        //else return false; // else no room is left in the stack
-        return false;
-        
-        
+        return stackSize + amountToAdd <= itemData.MaxStackSize;
     }
 
 

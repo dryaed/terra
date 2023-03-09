@@ -1597,6 +1597,8 @@ MonoBehaviour:
   AssignedInventorySlot:
     stackSize: -1
     _itemID: -1
+  _dropOffset: 1
+  _dropHeight: 1.5
 --- !u!1 &5617845574000157834
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ public class MouseItemData : MonoBehaviour
 
     private Transform _playerTransform;
 
-    [SerializeField] private float _dropOffset = 3.0f;
-    [SerializeField] private float _dropHeight = 1.0f;
+    [SerializeField] private float _dropOffset = 1f;
+    [SerializeField] private float _dropHeight = 1.5f;
 
     private void Awake()
     {
@@ -41,17 +41,22 @@ public class MouseItemData : MonoBehaviour
 
     private void Update()
     {
-        if (AssignedInventorySlot.ItemData != null)
-        {
-            transform.position = Mouse.current.position.ReadValue();
+        if (AssignedInventorySlot.ItemData == null) return;
+        transform.position = Mouse.current.position.ReadValue();
 
-            if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUIObject())
-            {
-                Instantiate(AssignedInventorySlot.ItemData.ItemPrefab, _playerTransform.position + _playerTransform.forward * _dropOffset - _playerTransform.up * _dropHeight, Quaternion.identity);                
+        if (!Mouse.current.leftButton.wasPressedThisFrame || IsPointerOverUIObject()) return;
+
+        if (AssignedInventorySlot.ItemData.ItemPrefab == null) return;
+            
+        Instantiate(AssignedInventorySlot.ItemData.ItemPrefab, _playerTransform.position + _playerTransform.forward * _dropOffset * Random.Range(2f, 4f) - _playerTransform.up * _dropHeight, Quaternion.identity);                
                 
-                ClearUISlot();
-                
-            }
+        if (AssignedInventorySlot.StackSize > 1)
+        {
+            AssignedInventorySlot.AddToStack(-1);
+            UpdateMouseSlot();
+        }
+        else {
+            ClearUISlot();
         }
     }
 

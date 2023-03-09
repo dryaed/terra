@@ -7,18 +7,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 12f;
-    public float runningModifier = 2f;
-    public float gravity = -10f;
-    public float jumpHeight = 4f;
+    public float speed = 14f;
+    public float runningModifier = 1.5f;
+    public float gravity = -40f;
+    public float jumpHeight = 5f;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.5f;
     public LayerMask groundMask;
 
-    Vector3 velocity;
-    bool isGrounded;
-    bool cursorLocked = true;
+    Vector3 _velocity;
+    bool _isGrounded;
+    bool _cursorLocked = true;
 
     public GameObject cam1;
     public GameObject cam2;
@@ -36,10 +36,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // gravity
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if(isGrounded && velocity.y < 0)
+        _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if(_isGrounded && _velocity.y < 0)
         {
-            velocity.y = -2f;
+            _velocity.y = -2f;
         }
 
         // x z movement
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = (transform.right * x + transform.forward * z);
 
         // run
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
             controller.Move(runningModifier * speed * Time.deltaTime * move);
         } else
@@ -57,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        _velocity.y += gravity * Time.deltaTime;
+        controller.Move(_velocity * Time.deltaTime);
 
         
 
@@ -85,13 +85,13 @@ public class PlayerMovement : MonoBehaviour
         // Left alt allows to toggle mouse display
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            if (cursorLocked == true)
+            if (_cursorLocked == true)
             {
-                cursorLocked = false;
+                _cursorLocked = false;
                 Cursor.lockState = CursorLockMode.None;
             } else
             {
-                cursorLocked = true;
+                _cursorLocked = true;
                 Cursor.lockState = CursorLockMode.Locked;
             }
             
