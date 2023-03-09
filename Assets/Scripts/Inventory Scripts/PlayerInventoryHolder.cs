@@ -5,34 +5,38 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInventoryHolder : InventoryHolder
-{
-    [SerializeField] protected int secondaryInventorySize;
-    [SerializeField] protected InventorySystem secondaryInventorySystem;
+{    
+    public static UnityAction OnPlayerInventoryChanged;
+    public static UnityAction<InventorySystem, int> OnPlayerInventoryDisplayRequested;
 
-    public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
-
-    public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
-
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-
-        secondaryInventorySystem = new InventorySystem(secondaryInventorySize);
+        //SaveGameManager.data.playerData.PlayerInventorySystem = primaryInventorySystem;
+        SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
+        //Debug.Log(SaveGameManager.data.playerData.PlayerInventorySystem);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.iKey.wasPressedThisFrame) OnPlayerBackpackDisplayRequested?.Invoke(secondaryInventorySystem);
+        if (Keyboard.current.iKey.wasPressedThisFrame) OnPlayerInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
+    }
+
+    protected override void LoadInventory(SaveData data)
+    {
+        
+        if (data.playerInventory.InventorySystem != null)
+        {
+            //this.primaryInventorySystem = data.playerData.PlayerInventorySystem;
+            this.primaryInventorySystem = data.playerInventory.InventorySystem;
+            OnPlayerInventoryChanged?.Invoke();
+        }
+        
     }
 
     public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd) // add an item to the inventory
     {
         if (primaryInventorySystem.AddToInventory(itemToAdd, amountToAdd)) // try to add to hotbar
-        {
-            return true;
-        } 
-        else if (secondaryInventorySystem.AddToInventory(itemToAdd, amountToAdd)) // try to add to backpack
         {
             return true;
         }

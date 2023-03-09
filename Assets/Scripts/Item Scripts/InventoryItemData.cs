@@ -9,10 +9,11 @@ using UnityEngine;
 /// </summary>
 public class InventoryItemData : ScriptableObject
 {
-    public int ID; // Item IDentification number
+    public int ID = -1; // Item IDentification number
     public string DisplayName; // Item name for display purposes
     [TextArea(4, 4)]
     public string Description; // Item description for display purposes
     public Sprite Icon; // Item sprite image for display purposes
     public int MaxStackSize; // Item Maximum Stack size for the inventory system
+    public GameObject ItemPrefab; // object that is used to spawn the item in world
 }

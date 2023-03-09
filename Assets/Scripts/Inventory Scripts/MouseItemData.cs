@@ -11,33 +11,52 @@ public class MouseItemData : MonoBehaviour
     public TextMeshProUGUI ItemCount;
     public InventorySlot AssignedInventorySlot;
 
+    private Transform _playerTransform;
+
+    [SerializeField] private float _dropOffset = 1f;
+    [SerializeField] private float _dropHeight = 1.5f;
+
     private void Awake()
     {
         ItemSprite.color = Color.clear;
+        ItemSprite.preserveAspect = true;
         ItemCount.text = "";
+
+        if (GameObject.Find("First Person Player").TryGetComponent<Transform>(out _playerTransform)) Debug.Log("NIGGAS STOLE DA PLAYER");
     }
 
     public void UpdateMouseSlot(InventorySlot invSlot) // updates slot ui
     {
         AssignedInventorySlot.AssignItem(invSlot);
-        ItemSprite.sprite = invSlot.ItemData.Icon;
-        if (invSlot.StackSize > 1) ItemCount.text = invSlot.StackSize.ToString();
+        UpdateMouseSlot();
+    }
+
+    public void UpdateMouseSlot()
+    {
+        ItemSprite.sprite = AssignedInventorySlot.ItemData.Icon;
+        if (AssignedInventorySlot.StackSize > 1) ItemCount.text = AssignedInventorySlot.StackSize.ToString();
         else ItemCount.text = "";
         ItemSprite.color = Color.white;
     }
 
     private void Update()
     {
-        // ?TODO: controller support
-        if (AssignedInventorySlot.ItemData != null)
-        {
-            transform.position = Mouse.current.position.ReadValue();
+        if (AssignedInventorySlot.ItemData == null) return;
+        transform.position = Mouse.current.position.ReadValue();
 
-            if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUIObject())
-            {
-                ClearUISlot();
-                // TODO: drop the item into the world
-            }
+        if (!Mouse.current.leftButton.wasPressedThisFrame || IsPointerOverUIObject()) return;
+
+        if (AssignedInventorySlot.ItemData.ItemPrefab == null) return;
+            
+        Instantiate(AssignedInventorySlot.ItemData.ItemPrefab, _playerTransform.position + _playerTransform.forward * _dropOffset * Random.Range(2f, 4f) - _playerTransform.up * _dropHeight, Quaternion.identity);                
+                
+        if (AssignedInventorySlot.StackSize > 1)
+        {
+            AssignedInventorySlot.AddToStack(-1);
+            UpdateMouseSlot();
+        }
+        else {
+            ClearUISlot();
         }
     }
 
@@ -51,9 +70,11 @@ public class MouseItemData : MonoBehaviour
 
     public static bool IsPointerOverUIObject() // checks if the mouse pointer is above a ui object
     {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = Mouse.current.position.ReadValue();
-        List<RaycastResult> results = new List<RaycastResult>();
+        PointerEventData eventDataCurrentPosition = new(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+        List<RaycastResult> results = new();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
     }
