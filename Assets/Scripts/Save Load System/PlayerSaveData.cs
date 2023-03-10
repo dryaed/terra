@@ -14,7 +14,6 @@ public class PlayerSaveData : MonoBehaviour
     {
         fpsController = GetComponent<PlayerMovement>();
         SaveLoad.OnLoadGame += LoadPlayerData;
-        // SaveLoad.OnSaveGame += SavePlayerData;
         SaveGameManager.OnSaveGameData += SavePlayerData;
     }
     
@@ -47,12 +46,10 @@ public struct PlayerData
 {
     public Vector3 PlayerPosition;
     public Quaternion PlayerRotation;
-    public InventorySystem PlayerInventorySystem;
 
     public PlayerData(Vector3 _position, Quaternion _rotation, InventorySystem _invSystem)
     {
         PlayerPosition = _position;
         PlayerRotation = _rotation;
-        PlayerInventorySystem = _invSystem;
     }
 }

@@ -62,8 +62,8 @@ public class HotbarDisplay : StaticInventoryDisplay
         
         if (Input.GetKeyDown(KeyCode.Q)) DropItem();
         
-        if (Input.mouseScrollDelta.y >= 1f) ChangeIndex(1);
-        if (Input.mouseScrollDelta.y <= -1f) ChangeIndex(-1);
+        if (Input.mouseScrollDelta.y >= 1f) ChangeIndex(-1);
+        if (Input.mouseScrollDelta.y <= -1f) ChangeIndex(1);
     }
 
     private void UseItem()
