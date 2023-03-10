@@ -366,6 +366,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  itemMask:
+    serializedVersion: 2
+    m_Bits: 128
   cam1: {fileID: 4324651849680937034}
   cam2: {fileID: 4324651849746776192}
   isFPS: 1

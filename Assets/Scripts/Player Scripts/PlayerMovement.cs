@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.5f;
     public LayerMask groundMask;
+    public LayerMask itemMask;
 
     Vector3 _velocity;
     bool _isGrounded;
@@ -29,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     {
         cam1.SetActive(isFPS);
         cam2.SetActive(!isFPS);
+        Debug.Log(Convert.ToInt32(groundMask));
+        Debug.Log(itemMask);
+        Physics.IgnoreLayerCollision(0, 7);
     }
 
 

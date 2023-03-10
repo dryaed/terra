@@ -22,7 +22,7 @@ public class MouseItemData : MonoBehaviour
         ItemSprite.preserveAspect = true;
         ItemCount.text = "";
 
-        if (GameObject.Find("First Person Player").TryGetComponent<Transform>(out _playerTransform)) Debug.Log("NIGGAS STOLE DA PLAYER");
+        if (GameObject.Find("First Person Player").TryGetComponent<Transform>(out _playerTransform)) Debug.Log("NIGGAS dont STOLE DA PLAYER");
     }
 
     public void UpdateMouseSlot(InventorySlot invSlot) // updates slot ui

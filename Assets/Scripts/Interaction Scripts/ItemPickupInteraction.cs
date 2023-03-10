@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
@@ -67,16 +68,28 @@ public class ItemPickupInteraction : Interactable
             Destroy(this.gameObject); // remove the in-world item
         }
     }
+    
+    
+    private void LoadItemData(SaveData data)
+    {
+        Destroy(this.gameObject);
+    }
 
+    /*
     private void LoadItemData(SaveData data)
     {
         if (data.collectedItems.Contains(id))
         {
             Destroy(this.gameObject);
         }
-        
-    }
 
+        if (!data.activeItems.TryGetValue(GetComponent<UniqueID>().ID, out ItemPickupSaveData itemData)) return;
+        Debug.Log(id);
+        //Instantiate(AssignedInventorySlot.ItemData.ItemPrefab, _playerTransform.position + _playerTransform.forward * _dropOffset * Random.Range(2f, 4f) - _playerTransform.up * _dropHeight, Quaternion.identity);
+        Instantiate(itemData.ItemData.ItemPrefab, itemData.ItemPosition, Quaternion.identity);
+
+    }
+    */
     private void OnDestroy()
     {
         if (SaveGameManager.data.activeItems.ContainsKey(id)) SaveGameManager.data.activeItems.Remove(id);
