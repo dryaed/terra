@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2358616087150433055}
   - component: {fileID: 2831506210221137085}
   - component: {fileID: 7915261128480058150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3f9fbf9627ede4b8835abe0269a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: c7f6f59e-b2d5-48ed-b9eb-6611b7343ee1
+  _id: 0a10e45a-f892-402f-ad8f-39ba4700e57b
 --- !u!114 &2831506210221137085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,10 @@ PrefabInstance:
     - target: {fileID: 1310227823338484, guid: fc5d03787b9943d429e3389730a18d22, type: 3}
       propertyPath: m_Name
       value: hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310227823338484, guid: fc5d03787b9943d429e3389730a18d22, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4399025696105442, guid: fc5d03787b9943d429e3389730a18d22, type: 3}
       propertyPath: m_RootOrder

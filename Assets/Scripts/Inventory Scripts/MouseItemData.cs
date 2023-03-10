@@ -22,7 +22,7 @@ public class MouseItemData : MonoBehaviour
         ItemSprite.preserveAspect = true;
         ItemCount.text = "";
 
-        if (GameObject.Find("First Person Player").TryGetComponent<Transform>(out _playerTransform)) Debug.Log("NIGGAS dont STOLE DA PLAYER");
+        if (GameObject.Find("First Person Player").TryGetComponent<Transform>(out _playerTransform)) Debug.Log("Player game object found for MouseItemData");
     }
 
     public void UpdateMouseSlot(InventorySlot invSlot) // updates slot ui
@@ -46,6 +46,11 @@ public class MouseItemData : MonoBehaviour
 
         if (!Mouse.current.leftButton.wasPressedThisFrame || IsPointerOverUIObject()) return;
 
+        DropItem();
+    }
+
+    private void DropItem()
+    {
         if (AssignedInventorySlot.ItemData.ItemPrefab == null) return;
             
         Instantiate(AssignedInventorySlot.ItemData.ItemPrefab, _playerTransform.position + _playerTransform.forward * _dropOffset * Random.Range(2f, 4f) - _playerTransform.up * _dropHeight, Quaternion.identity);                
@@ -59,6 +64,8 @@ public class MouseItemData : MonoBehaviour
             ClearUISlot();
         }
     }
+    
+    
 
     public void ClearUISlot() // clear the ui for this slot
     {

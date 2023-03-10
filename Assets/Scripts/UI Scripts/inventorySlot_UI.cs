@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 public class InventorySlot_UI : MonoBehaviour
 {
     [SerializeField] private Image itemSprite; // visual item representation
+    [SerializeField] private GameObject slotHighlight;
     [SerializeField] private TMP_Text itemCount; // visual stack size representation
     [SerializeField] private InventorySlot assignedInventorySlot; // what actual data slot this represents
 
@@ -47,6 +49,12 @@ public class InventorySlot_UI : MonoBehaviour
             ClearUISlot(); // if the data slot is empty clear the ui slot
         }
     }
+
+    public void ToggleHighlight()
+    {
+        slotHighlight.SetActive(!slotHighlight.activeInHierarchy);
+    }
+    
     public void UpdateUISlot()
     {
         if (assignedInventorySlot != null) UpdateUISlot(assignedInventorySlot);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Inventory System/Inventory Item")]
 /// <summary>
@@ -16,4 +17,15 @@ public class InventoryItemData : ScriptableObject
     public Sprite Icon; // Item sprite image for display purposes
     public int MaxStackSize; // Item Maximum Stack size for the inventory system
     public GameObject ItemPrefab; // object that is used to spawn the item in world
+    public int GoldValue;
+
+    public void UseItem()
+    {
+        Debug.Log($"Using {DisplayName}");
+    }
+
+    public void DropItem()
+    {
+        Debug.Log($"Dropping {DisplayName}");
+    }
 }
