@@ -23,7 +23,7 @@ public class UniqueID : MonoBehaviour
     {
         if (idDatabase.ContainsKey(_id)) idDatabase.Remove(_id);
     }
-
+    [ContextMenu("Generate ID")]
     private void Generate()
     {
         _id = Guid.NewGuid().ToString();

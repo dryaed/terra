@@ -60,12 +60,12 @@ public class InventorySystem // The full inventory system that contains holders
     {
         inventorySlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList(); // get a list of inventory slots in InventorySlots that have the same ItemData (Linq magic)
 
-        return inventorySlot == null ? false : true; // if there is no such slot, return false
+        return inventorySlot != null; // if there is no such slot, return false
     }
 
     public bool HasFreeSlot(out InventorySlot freeSlot) // searches for a slot that has no ItemData in it
     {
         freeSlot = InventorySlots.FirstOrDefault(slot => slot.ItemData == null); // get first free slot
-        return freeSlot == null ? false : true; // if there is no free slot, return false
+        return freeSlot != null; // if there is no free slot, return false
     }
 }
