@@ -12,6 +12,7 @@ public class ShopKeeperInteraction : Interactable
 
     public override void Interact()
     {
-        Debug.Log("Interacted with the shop keeper");
+        ShopKeeper shopKeeper = GetComponent<ShopKeeper>();
+        shopKeeper.Interact();
     }
 }
