@@ -10,14 +10,17 @@ using UnityEngine.Serialization;
 public class ShopKeeper : MonoBehaviour
 {
     [SerializeField] private ShopItemList shopItemsHeld;
-    [FormerlySerializedAs("_shopSystem")] [SerializeField] private ShopSystem shopSystem;
+    [SerializeField] private ShopSystem shopSystem;
+    private PlayerInventoryHolder _playerInventory;
 
     public static UnityAction<ShopSystem, PlayerInventoryHolder> OnShopWindowRequested;
 
     private void Awake()
     {
         shopSystem = new ShopSystem(shopItemsHeld.Items.Count, shopItemsHeld.MaxAllowedGold, shopItemsHeld.BuyMarkUp, shopItemsHeld.SellMarkUp);
-
+        
+        if (GameObject.Find("First Person Player").TryGetComponent<PlayerInventoryHolder>(out _playerInventory)) Debug.Log("Player Inventory Holder found for ShopKeeper");
+        
         Debug.Log($"Shopkeepers {GetComponent<UniqueID>().ID} stock:");
         foreach (var item in shopItemsHeld.Items)
         {
@@ -29,8 +32,7 @@ public class ShopKeeper : MonoBehaviour
     public void Interact()
     {
         Debug.Log("Interacted with the shop keeper");
-        var playerInv = GetComponent<PlayerInventoryHolder>();
         //if (playerInv == null) return;
-        OnShopWindowRequested?.Invoke(shopSystem, playerInv);
+        OnShopWindowRequested?.Invoke(shopSystem, _playerInventory);
     }
 }

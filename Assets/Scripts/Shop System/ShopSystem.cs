@@ -12,7 +12,11 @@ public class ShopSystem : MonoBehaviour
     [FormerlySerializedAs("_availableGold")] [SerializeField] private int availableGold;
     [FormerlySerializedAs("_buyMarkUp")] [SerializeField] private float buyMarkUp;
     [FormerlySerializedAs("_sellMarkUp")] [SerializeField] private float sellMarkUp;
-    
+
+    public List<ShopSlot> ShopInventory => shopInventory;
+    public int AvailableGold => availableGold;
+    public float BuyMarkUp => buyMarkUp;
+    public float SellMarkUp => sellMarkUp;
     public ShopSystem(int size, int gold, float buyMarkUp, float sellMarkUp)
     {
         availableGold = gold;

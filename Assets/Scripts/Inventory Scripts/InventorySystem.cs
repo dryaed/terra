@@ -9,13 +9,26 @@ using System.Security.Cryptography.X509Certificates;
 public class InventorySystem // The full inventory system that contains holders
 {
     [SerializeField] private List<InventorySlot> inventorySlots; // list of inventory slots
-
+    [SerializeField] private int gold;
     public List<InventorySlot> InventorySlots => inventorySlots;
     public int InventorySize => inventorySlots.Count;
+    public int Gold => gold;
 
     public UnityAction<InventorySlot> OnInventorySlotChanged;
 
     public InventorySystem(int size) // constructor that sets the inventory size
+    {
+        gold = 0;
+        CreateInventory(size);
+    }
+    
+    public InventorySystem(int size, int setGold) // constructor that sets the inventory size
+    {
+        gold = setGold;
+        CreateInventory(size);
+    }
+
+    private void CreateInventory(int size)
     {
         inventorySlots = new List<InventorySlot>(size);
 
