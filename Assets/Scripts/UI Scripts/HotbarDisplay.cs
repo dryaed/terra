@@ -68,6 +68,7 @@ public class HotbarDisplay : StaticInventoryDisplay
 
     private void UseItem()
     {
+        //implement checks so that you don't use items when using the UI | navigating the inventories
         if (slots[_currentIndex].AssignedInventorySlot.ItemData == null) return;
         slots[_currentIndex].AssignedInventorySlot.ItemData.UseItem();
     }

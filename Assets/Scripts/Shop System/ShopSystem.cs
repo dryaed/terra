@@ -65,4 +65,16 @@ public class ShopSystem : MonoBehaviour
         shopSlot = shopInventory.Find(i => i.ItemData == itemToAdd);
         return shopSlot != null; // if there is no such slot, return false
     }
+
+    public void PurchaseItem(InventoryItemData data, int amount)
+    {
+        if (!ContainsItem(data, out ShopSlot slot)) return;
+        
+        slot.RemoveFromStack(amount);
+    }
+
+    public void GainGold(int basketTotal)
+    {
+        availableGold += basketTotal;
+    }
 }

@@ -10,6 +10,7 @@ public abstract class InventoryHolder : MonoBehaviour
     [SerializeField] private int inventorySize; // how many slots does this holder have
     [SerializeField] protected InventorySystem primaryInventorySystem; // 
     [SerializeField] protected int offset = 10;
+    [SerializeField] protected int gold;
 
     public int Offset => offset;
 
@@ -21,7 +22,7 @@ public abstract class InventoryHolder : MonoBehaviour
     {
         SaveLoad.OnLoadGame += LoadInventory;
 
-        primaryInventorySystem = new InventorySystem(inventorySize); 
+        primaryInventorySystem = new InventorySystem(inventorySize, gold); 
     }
 
     protected abstract void LoadInventory(SaveData saveData);

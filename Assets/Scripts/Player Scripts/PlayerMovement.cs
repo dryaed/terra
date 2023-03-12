@@ -90,10 +90,12 @@ public class PlayerMovement : MonoBehaviour
             if (_cursorLocked == true)
             {
                 _cursorLocked = false;
+                MouseLook.allowHeadMovement = false;
                 Cursor.lockState = CursorLockMode.None;
             } else
             {
                 _cursorLocked = true;
+                MouseLook.allowHeadMovement = true;
                 Cursor.lockState = CursorLockMode.Locked;
             }
             

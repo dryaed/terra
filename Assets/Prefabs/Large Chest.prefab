@@ -74,10 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20447995bff562e45af75fdbbfbfe30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySize: 30
+  inventorySize: 20
   primaryInventorySystem:
     inventorySlots: []
+    gold: 0
   offset: 10
+  gold: 0
 --- !u!114 &5902856472281241397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3f9fbf9627ede4b8835abe0269a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 3c3adf3b-7aac-42fc-b5d5-0e4ceab7ce99
+  _id: 88e05db8-d38e-4b61-82b1-faafc8b9f67d
 --- !u!1001 &1073717147499300420
 PrefabInstance:
   m_ObjectHideFlags: 0
