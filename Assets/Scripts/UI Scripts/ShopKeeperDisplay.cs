@@ -57,9 +57,9 @@ public class ShopKeeperDisplay : MonoBehaviour
             if (_isSelling) buyButton.onClick.AddListener(SellItems);
             else buyButton.onClick.AddListener(BuyItems);
         }
-        
-        
+
         ClearSlots();
+        ClearItemPreview();
 
         basketTotalText.enabled = false;
         buyButton.gameObject.SetActive(false);
@@ -67,8 +67,8 @@ public class ShopKeeperDisplay : MonoBehaviour
         playerGoldText.text = $"Player Gold {_playerInventoryHolder.PrimaryInventorySystem.Gold}G";
         shopGoldText.text = $"Shop Gold {_shopSystem.AvailableGold}G";
         
-        DisplayShopInventory();
-        //DisplayPlayerInventory();
+        if (_isSelling) DisplayPlayerInventory();
+        else DisplayShopInventory();
     }
 
     private void BuyItems()
@@ -76,10 +76,10 @@ public class ShopKeeperDisplay : MonoBehaviour
         Debug.Log("Clicked the buy button");
         
         if (_playerInventoryHolder.PrimaryInventorySystem.Gold < basketTotal) return;
-        Debug.Log("Passed the check if player has more gold than basket total");
+        //Debug.Log("Passed the check if player has more gold than basket total");
 
         if (!_playerInventoryHolder.PrimaryInventorySystem.CheckInventoryRemaining(_shoppingCart)) return;
-        Debug.Log("Passed the check if the player has space in the inventory");
+        //Debug.Log("Passed the check if the player has space in the inventory");
 
         foreach (var kvp in _shoppingCart)
         {
@@ -100,7 +100,19 @@ public class ShopKeeperDisplay : MonoBehaviour
 
     private void SellItems()
     {
+        if (_shopSystem.AvailableGold < basketTotal) return;
+
+        foreach (var kvp in _shoppingCart)
+        {
+            var price = GetModifiedPrice(kvp.Key, kvp.Value, _shopSystem.SellMarkUp);
+            
+            _shopSystem.SellItem(kvp.Key, kvp.Value, price);
+
+            _playerInventoryHolder.PrimaryInventorySystem.GainGold(price);
+            _playerInventoryHolder.PrimaryInventorySystem.RemoveItemsFromInventory(kvp.Key, kvp.Value);
+        }
         
+        RefreshDisplay();
     }
 
     private void DisplayShopInventory()
@@ -116,7 +128,14 @@ public class ShopKeeperDisplay : MonoBehaviour
 
     private void DisplayPlayerInventory()
     {
-        
+        foreach (var item in _playerInventoryHolder.PrimaryInventorySystem.GetAllItemsHeld())
+        {
+            var tempSlot = new ShopSlot();
+            tempSlot.AssignItem(item.Key, item.Value);
+            
+            var shopSlot = Instantiate(shopSlotPrefab, itemListContentPanel.transform);
+            shopSlot.Init(tempSlot, _shopSystem.SellMarkUp);
+        }
     }
     
     private void ClearSlots()
@@ -136,7 +155,19 @@ public class ShopKeeperDisplay : MonoBehaviour
     }
     private void UpdateItemPreview(ShopSlotUI shopSlotUI)
     {
-        
+        var data = shopSlotUI.AssignedItemSlot.ItemData;
+
+        itemPreviewSprite.sprite = data.Icon;
+        itemPreviewSprite.color = Color.white;
+        itemPreviewName.text = data.DisplayName;
+        itemPreviewDescription.text = data.Description;
+    }
+    private void ClearItemPreview()
+    {
+        itemPreviewSprite.sprite = null;
+        itemPreviewSprite.color = Color.clear;
+        itemPreviewName.text = "";
+        itemPreviewDescription.text = "";
     }
 
     public void AddItemToCart(ShopSlotUI shopSlotUI)
@@ -212,13 +243,6 @@ public class ShopKeeperDisplay : MonoBehaviour
         
         CheckCartForAvailableGold();
     }
-
-    private void ClearItemPreview()
-    {
-        
-    }
-
-
     private void CheckCartForAvailableGold()
     {
         var goldToCheck = _isSelling ? _shopSystem.AvailableGold : _playerInventoryHolder.PrimaryInventorySystem.Gold;
@@ -234,9 +258,17 @@ public class ShopKeeperDisplay : MonoBehaviour
     {
         var baseValue = data.GoldValue * amount;
 
-        return Mathf.RoundToInt(baseValue + baseValue * markUp);
+        return Mathf.FloorToInt(baseValue + baseValue * markUp);
     }
 
-
-    
+    public void OnBuyTabPressed()
+    {
+        _isSelling = false;
+        RefreshDisplay();
+    }
+    public void OnSellTabPressed()
+    {
+        _isSelling = true;
+        RefreshDisplay();
+    }
 }

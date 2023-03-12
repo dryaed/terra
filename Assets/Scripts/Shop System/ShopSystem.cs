@@ -41,6 +41,7 @@ public class ShopSystem : MonoBehaviour
         if (ContainsItem(data, out ShopSlot shopSlot))
         {
             shopSlot.AddToStack(amount);
+            return;
         }
 
         var freeSlot = GetFreeSlot();
@@ -65,16 +66,28 @@ public class ShopSystem : MonoBehaviour
         shopSlot = shopInventory.Find(i => i.ItemData == itemToAdd);
         return shopSlot != null; // if there is no such slot, return false
     }
-
+    
+    // the SHOP is PURCHASING the item from the player
     public void PurchaseItem(InventoryItemData data, int amount)
     {
         if (!ContainsItem(data, out ShopSlot slot)) return;
         
         slot.RemoveFromStack(amount);
     }
+    
+    // the PLAYER is SELLING the item to the shop
+    public void SellItem(InventoryItemData kvpKey, int kvpValue, int price)
+    {
+        AddToShop(kvpKey, kvpValue);
+        ReduceGold(price);
+    }
 
     public void GainGold(int basketTotal)
     {
         availableGold += basketTotal;
+    }
+    public void ReduceGold(int price)
+    {
+        availableGold -= price;
     }
 }

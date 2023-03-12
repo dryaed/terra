@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class InventorySystem // The full inventory system that contains holders
@@ -105,5 +106,45 @@ public class InventorySystem // The full inventory system that contains holders
     public void SpendGold(int basketTotal)
     {
         gold -= basketTotal;
+    }
+
+    public Dictionary<InventoryItemData, int> GetAllItemsHeld()
+    {
+        var distinctItems = new Dictionary<InventoryItemData, int>();
+        
+        foreach(var item in InventorySlots)
+        {
+            if (item.ItemData == null) continue;;
+
+            if (!distinctItems.ContainsKey(item.ItemData)) distinctItems.Add(item.ItemData, item.StackSize);
+            else distinctItems[item.ItemData] += item.StackSize;
+        }
+
+        return distinctItems;
+    }
+
+    public void GainGold(int price)
+    {
+        gold += price;
+    }
+
+    public void RemoveItemsFromInventory(InventoryItemData data, int amount)
+    {
+        if (ContainsItem(data, out List<InventorySlot> inventorySlot))
+        {
+            foreach (var slot in inventorySlot)
+            {
+                var stackSize = slot.StackSize;
+                
+                if (stackSize > amount) slot.RemoveFromStack(amount);
+                else
+                {
+                    slot.RemoveFromStack(stackSize);
+                    amount -= stackSize;
+                }
+                
+                OnInventorySlotChanged?.Invoke(slot);
+            }
+        }
     }
 }
