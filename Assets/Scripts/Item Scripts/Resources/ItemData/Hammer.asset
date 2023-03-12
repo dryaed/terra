@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   DisplayName: Hammer
-  Description: dis is a hamma
+  Description: Dis is da hamma.
   Icon: {fileID: 21300000, guid: 124b5829223a4524890ded1cd8514eb6, type: 3}
   MaxStackSize: 1
   ItemPrefab: {fileID: 6619094619505340713, guid: 2a4b5ca17f3290946b148573c547bb2c, type: 3}

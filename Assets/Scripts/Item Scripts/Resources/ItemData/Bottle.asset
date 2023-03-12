@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   DisplayName: Bottle
-  Description: a bottle with suspicious contents
+  Description: A bottle with suspicious contents.
   Icon: {fileID: 21300000, guid: c06f1c2589a1dcc41b385388110af23f, type: 3}
   MaxStackSize: 3
   ItemPrefab: {fileID: 2272287073351186483, guid: b5e8945fe50552645a359a347b6d2d89, type: 3}

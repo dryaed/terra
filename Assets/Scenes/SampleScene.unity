@@ -1237,7 +1237,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 399036115}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1212284902}
+        m_TargetAssemblyTypeName: ShopKeeperDisplay, Assembly-CSharp
+        m_MethodName: OnSellTabPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &399036115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,7 +1904,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemsHeld: {fileID: 11400000, guid: d553605a922055646b6ff5c0b0bc3a92, type: 2}
-  shopSystem: {fileID: 0}
+  shopSystem:
+    shopInventory: []
+    availableGold: 0
+    buyMarkUp: 0
+    sellMarkUp: 0
 --- !u!114 &575508058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3319,7 +3335,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemsHeld: {fileID: 11400000, guid: fd259c2d985352a4eb14a23b0cf59e43, type: 2}
-  shopSystem: {fileID: 0}
+  shopSystem:
+    shopInventory: []
+    availableGold: 0
+    buyMarkUp: 0
+    sellMarkUp: 0
 --- !u!114 &898658855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3770,7 +3790,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemsHeld: {fileID: 11400000, guid: 35b28bea1ec1c8a4fa33d1a7cfffcdf7, type: 2}
-  shopSystem: {fileID: 0}
+  shopSystem:
+    shopInventory: []
+    availableGold: 0
+    buyMarkUp: 0
+    sellMarkUp: 0
 --- !u!114 &1012845368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4687,7 +4711,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1352605002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1212284902}
+        m_TargetAssemblyTypeName: ShopKeeperDisplay, Assembly-CSharp
+        m_MethodName: OnBuyTabPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1352605002
 MonoBehaviour:
   m_ObjectHideFlags: 0
