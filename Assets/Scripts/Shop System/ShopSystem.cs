@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [System.Serializable]
-public class ShopSystem : MonoBehaviour
+public class ShopSystem
 {
-    [FormerlySerializedAs("_shopInventory")] [SerializeField] private List<ShopSlot> shopInventory;
-    [FormerlySerializedAs("_availableGold")] [SerializeField] private int availableGold;
-    [FormerlySerializedAs("_buyMarkUp")] [SerializeField] private float buyMarkUp;
-    [FormerlySerializedAs("_sellMarkUp")] [SerializeField] private float sellMarkUp;
+    [SerializeField] private List<ShopSlot> shopInventory;
+    [SerializeField] private int availableGold;
+    [SerializeField] private float buyMarkUp;
+    [SerializeField] private float sellMarkUp;
 
     public List<ShopSlot> ShopInventory => shopInventory;
     public int AvailableGold => availableGold;

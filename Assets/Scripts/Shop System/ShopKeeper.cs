@@ -13,6 +13,9 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField] private ShopSystem shopSystem;
     private PlayerInventoryHolder _playerInventory;
 
+    private string _id;
+    private ShopSaveData _shopSaveData;
+
     public static UnityAction<ShopSystem, PlayerInventoryHolder> OnShopWindowRequested;
 
     private void Awake()
@@ -27,6 +30,32 @@ public class ShopKeeper : MonoBehaviour
             Debug.Log($"{item.ItemData.DisplayName}: {item.Amount}");
             shopSystem.AddToShop(item.ItemData, item.Amount);
         }
+
+        _id = GetComponent<UniqueID>().ID;
+        _shopSaveData = new ShopSaveData(shopSystem);
+    }
+
+    private void Start()
+    {
+        if (!SaveGameManager.data.shopKeeperDictionary.ContainsKey(_id)) SaveGameManager.data.shopKeeperDictionary.Add(_id, _shopSaveData);;
+    }
+
+    private void OnEnable()
+    {
+        SaveLoad.OnLoadGame += LoadInventory;
+    }
+
+    private void OnDisable()
+    {
+        SaveLoad.OnLoadGame += LoadInventory;
+    }
+
+    private void LoadInventory(SaveData data)
+    {
+        if (!data.shopKeeperDictionary.TryGetValue(_id, out ShopSaveData shopSaveData)) return;
+
+        _shopSaveData = shopSaveData;
+        shopSystem = _shopSaveData.ShopSystem;
     }
 
     public void Interact()
@@ -34,5 +63,16 @@ public class ShopKeeper : MonoBehaviour
         Debug.Log("Interacted with the shop keeper");
         //if (playerInv == null) return;
         OnShopWindowRequested?.Invoke(shopSystem, _playerInventory);
+    }
+}
+
+[System.Serializable]
+public class ShopSaveData
+{
+    public ShopSystem ShopSystem;
+
+    public ShopSaveData(ShopSystem shopSystem)
+    {
+        ShopSystem = shopSystem;
     }
 }

@@ -135,13 +135,18 @@ public class InventorySystem // The full inventory system that contains holders
             foreach (var slot in inventorySlot)
             {
                 var stackSize = slot.StackSize;
-                
-                if (stackSize > amount) slot.RemoveFromStack(amount);
+
+                if (stackSize > amount)
+                {
+                    slot.RemoveFromStack(amount);
+                    amount -= stackSize;
+                }
                 else
                 {
                     slot.RemoveFromStack(stackSize);
                     amount -= stackSize;
                 }
+                if (amount <= 0) amount = 0;
                 
                 OnInventorySlotChanged?.Invoke(slot);
             }
