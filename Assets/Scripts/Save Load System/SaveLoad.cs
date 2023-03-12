@@ -9,6 +9,7 @@ public static class SaveLoad
 {
     public static UnityAction OnSaveGame;
     public static UnityAction<SaveData> OnLoadGame;
+    public static UnityAction OnLoadGameEvent;
 
     private static string saveDirectory = "/GameSaves/";
     private static string fileName = "GameSave.ngr";
@@ -40,6 +41,7 @@ public static class SaveLoad
             data = JsonUtility.FromJson<SaveData>(json);
 
             OnLoadGame?.Invoke(data);
+            OnLoadGameEvent.Invoke();
         }
         else
         {

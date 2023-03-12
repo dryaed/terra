@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         cam1.SetActive(isFPS);
         cam2.SetActive(!isFPS);
+        Physics.IgnoreLayerCollision(0, 7); // no collision between Default[0] and Item[7] layers
     }
 
 
@@ -88,13 +90,17 @@ public class PlayerMovement : MonoBehaviour
             if (_cursorLocked == true)
             {
                 _cursorLocked = false;
+                MouseLook.allowHeadMovement = false;
                 Cursor.lockState = CursorLockMode.None;
             } else
             {
                 _cursorLocked = true;
+                MouseLook.allowHeadMovement = true;
                 Cursor.lockState = CursorLockMode.Locked;
             }
             
         }
+        
+        
     }
 }

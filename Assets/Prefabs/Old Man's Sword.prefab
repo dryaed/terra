@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8405573006078094250}
   - component: {fileID: 8310939209757172744}
   - component: {fileID: 4162817851502678931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Old Man's Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3f9fbf9627ede4b8835abe0269a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 46cf8ae7-f707-4a9e-b670-53b5bb63d071
+  _id: e3ce2f67-bbba-4a37-9c68-a8833772390f
 --- !u!114 &8310939209757172744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,10 @@ PrefabInstance:
     - target: {fileID: 1226314932988728, guid: 3341332030f352140a7336db5b5d1c35, type: 3}
       propertyPath: m_Name
       value: sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226314932988728, guid: 3341332030f352140a7336db5b5d1c35, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4227315494894624, guid: 3341332030f352140a7336db5b5d1c35, type: 3}
       propertyPath: m_RootOrder

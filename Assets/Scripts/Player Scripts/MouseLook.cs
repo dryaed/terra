@@ -11,16 +11,20 @@ public class MouseLook : MonoBehaviour
 
     float xRotation = 0f;
 
+    public static bool allowHeadMovement;
+
     // Start is called before the first frame update
     void Start()
     {
         // Locking the cursor
         Cursor.lockState = CursorLockMode.Locked;
+        allowHeadMovement = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!allowHeadMovement) return;
         // Getting mouse movement
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

@@ -4,18 +4,32 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class InventorySystem // The full inventory system that contains holders
 {
     [SerializeField] private List<InventorySlot> inventorySlots; // list of inventory slots
-
+    [SerializeField] private int gold;
     public List<InventorySlot> InventorySlots => inventorySlots;
     public int InventorySize => inventorySlots.Count;
+    public int Gold => gold;
 
     public UnityAction<InventorySlot> OnInventorySlotChanged;
 
     public InventorySystem(int size) // constructor that sets the inventory size
+    {
+        gold = 0;
+        CreateInventory(size);
+    }
+    
+    public InventorySystem(int size, int setGold) // constructor that sets the inventory size
+    {
+        gold = setGold;
+        CreateInventory(size);
+    }
+
+    private void CreateInventory(int size)
     {
         inventorySlots = new List<InventorySlot>(size);
 
@@ -60,12 +74,82 @@ public class InventorySystem // The full inventory system that contains holders
     {
         inventorySlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList(); // get a list of inventory slots in InventorySlots that have the same ItemData (Linq magic)
 
-        return inventorySlot == null ? false : true; // if there is no such slot, return false
+        return inventorySlot != null; // if there is no such slot, return false
     }
 
     public bool HasFreeSlot(out InventorySlot freeSlot) // searches for a slot that has no ItemData in it
     {
         freeSlot = InventorySlots.FirstOrDefault(slot => slot.ItemData == null); // get first free slot
-        return freeSlot == null ? false : true; // if there is no free slot, return false
+        return freeSlot != null; // if there is no free slot, return false
+    }
+
+    public bool CheckInventoryRemaining(Dictionary<InventoryItemData, int> shoppingCart)
+    {
+        var clonedSystem = new InventorySystem(this.InventorySize);
+
+        for (int i = 0; i < InventorySize; i++)
+        {
+            clonedSystem.InventorySlots[i].AssignItem(this.InventorySlots[i].ItemData, this.InventorySlots[i].StackSize);
+        }
+
+        foreach (var kvp in shoppingCart)
+        {
+            for (int i = 0; i < kvp.Value; i++)
+            {
+                if (!clonedSystem.AddToInventory(kvp.Key, 1)) return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void SpendGold(int basketTotal)
+    {
+        gold -= basketTotal;
+    }
+
+    public Dictionary<InventoryItemData, int> GetAllItemsHeld()
+    {
+        var distinctItems = new Dictionary<InventoryItemData, int>();
+        
+        foreach(var item in InventorySlots)
+        {
+            if (item.ItemData == null) continue;;
+
+            if (!distinctItems.ContainsKey(item.ItemData)) distinctItems.Add(item.ItemData, item.StackSize);
+            else distinctItems[item.ItemData] += item.StackSize;
+        }
+
+        return distinctItems;
+    }
+
+    public void GainGold(int price)
+    {
+        gold += price;
+    }
+
+    public void RemoveItemsFromInventory(InventoryItemData data, int amount)
+    {
+        if (ContainsItem(data, out List<InventorySlot> inventorySlot))
+        {
+            foreach (var slot in inventorySlot)
+            {
+                var stackSize = slot.StackSize;
+
+                if (stackSize > amount)
+                {
+                    slot.RemoveFromStack(amount);
+                    amount -= stackSize;
+                }
+                else
+                {
+                    slot.RemoveFromStack(stackSize);
+                    amount -= stackSize;
+                }
+                if (amount <= 0) amount = 0;
+                
+                OnInventorySlotChanged?.Invoke(slot);
+            }
+        }
     }
 }

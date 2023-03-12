@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7271073301177309701}
   - component: {fileID: 7140722827674817959}
   - component: {fileID: 2993731011325289020}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3f9fbf9627ede4b8835abe0269a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 39615e29-7b39-464d-8431-3c255f23a8aa
+  _id: 165fb893-bf5e-41db-b81e-af08df4efb79
 --- !u!114 &7140722827674817959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,10 @@ PrefabInstance:
     - target: {fileID: 1304279694806520, guid: c530fbff4103afc408c32f5f7bfe17f1, type: 3}
       propertyPath: m_Name
       value: beer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304279694806520, guid: c530fbff4103afc408c32f5f7bfe17f1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4827899373692678, guid: c530fbff4103afc408c32f5f7bfe17f1, type: 3}
       propertyPath: m_RootOrder

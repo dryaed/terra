@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
+
+// Moved this functionality to UIController.cs
 public class InventoryUIController : MonoBehaviour
 {
     [FormerlySerializedAs("chestPanel")]public DynamicInventoryDisplay inventoryPanel;

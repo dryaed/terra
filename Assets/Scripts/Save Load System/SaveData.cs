@@ -12,6 +12,7 @@ public class SaveData
     public SerializableDictionary<string, ItemPickupSaveData> activeItems; // stores items to be rendered in-world
 
     public SerializableDictionary<string, InventorySaveData> chestDictionary; // stores chest data
+    public SerializableDictionary<string, ShopSaveData> shopKeeperDictionary;
 
     public SaveData()
     {
@@ -19,6 +20,7 @@ public class SaveData
         playerInventory = new InventorySaveData();
         collectedItems = new List<string>();
         activeItems = new SerializableDictionary<string, ItemPickupSaveData>();
-        chestDictionary = new SerializableDictionary<string, InventorySaveData>();        
+        chestDictionary = new SerializableDictionary<string, InventorySaveData>();
+        shopKeeperDictionary = new SerializableDictionary<string, ShopSaveData>();
     }
 }
