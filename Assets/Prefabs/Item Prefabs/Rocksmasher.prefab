@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2831506210221137085}
   - component: {fileID: 7915261128480058150}
   m_Layer: 7
-  m_Name: Hammer
+  m_Name: Rocksmasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
-  ItemData: {fileID: 11400000, guid: 94b68378b374308488cff8dc2ef6275c, type: 2}
+  ItemData: {fileID: 11400000, guid: b9379d497a42b5c468a014106680331f, type: 2}
   stackSize: 1
   _rotationSpeed: 80
   _bobIntensity: 0.5

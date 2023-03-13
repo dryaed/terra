@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88393314cfdc6994f8a856b692ee233f, type: 3}
+  m_Name: Treecutter
+  m_EditorClassIdentifier: 
+  ID: 4
+  DisplayName: Treecutter Sword
+  Description: 'A sword made for tree cutting. It cuts trees.
+
+    Wasn''t that obvious?'
+  Icon: {fileID: 21300000, guid: ceab23b55d0080c49817ddefbb13d07b, type: 3}
+  MaxStackSize: 1
+  ItemPrefab: {fileID: 1136696786063886748, guid: 39c8282133f219a43bad9baf4f841c93, type: 3}
+  GoldValue: 200
+  ToolType: wood
