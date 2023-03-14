@@ -8,20 +8,28 @@ public class ResourceNode : MonoBehaviour
 {
     // Node parameters
     [SerializeField] private InventoryItemData resourceItemData;
+    [SerializeField] private GameObject resourceNodePrefab;
     [SerializeField] private int resourceNodeSize;
     [SerializeField] private string toolTypeRequired;
     
     private GameObject _player; // player reference
     private GameObject _hotbarReference;
+    
     private int _resourceLeft; // this keeps track of how many units is left in the node
 
     // Saving data
     private string _id;
     private ResourceNodeSaveData _saveData;
 
+    public int AmountLeft
+    {
+        get => _resourceLeft;
+        set => _resourceLeft = value;
+    }
+
     private void Awake()
     {
-        _saveData = new ResourceNodeSaveData(resourceItemData, _resourceLeft, transform.position, transform.rotation);
+        _saveData = new ResourceNodeSaveData(resourceItemData, resourceNodePrefab, _resourceLeft, transform.position, transform.rotation);
         SaveLoad.OnLoadGame += LoadResourceNodeData;
     }
     
@@ -90,13 +98,15 @@ public class ResourceNode : MonoBehaviour
 public struct ResourceNodeSaveData
 {
     public InventoryItemData ItemData;
+    public GameObject ResourceNodePrefab;
     public int ResourceLeft;
     public Vector3 ItemPosition;
     public Quaternion ItemRotation;
 
-    public ResourceNodeSaveData(InventoryItemData _data, int _resourceLeft, Vector3 _position, Quaternion _rotation)
+    public ResourceNodeSaveData(InventoryItemData _data, GameObject _resourceNodePrefab, int _resourceLeft, Vector3 _position, Quaternion _rotation)
     {
         ItemData = _data;
+        ResourceNodePrefab = _resourceNodePrefab;
         ResourceLeft = _resourceLeft;
         ItemPosition = _position;
         ItemRotation = _rotation;
