@@ -16,6 +16,8 @@ public class HotbarDisplay : StaticInventoryDisplay
     [SerializeField] private float _dropOffset = 1f;
     [SerializeField] private float _dropHeight = 1.5f;
 
+    public ToolItemData ToolItem;
+
     //private PlayerControls _playerControls;
     private void Awake()
     {
@@ -64,6 +66,8 @@ public class HotbarDisplay : StaticInventoryDisplay
         
         if (Input.mouseScrollDelta.y >= 1f) ChangeIndex(-1);
         if (Input.mouseScrollDelta.y <= -1f) ChangeIndex(1);
+
+        ToolItem = slots[_currentIndex].AssignedInventorySlot.ItemData as ToolItemData;
     }
 
     private void UseItem()
