@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcda1fd790a2c984ab766819065bf3a3, type: 3}
-  m_Name: OldmanSword
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  ID: 1
-  DisplayName: Old Man's Sword
-  Description: A sword you got from an old man.
-  Icon: {fileID: 21300000, guid: ceab23b55d0080c49817ddefbb13d07b, type: 3}
-  MaxStackSize: 1
-  ItemPrefab: {fileID: 1136696786063886748, guid: 39c8282133f219a43bad9baf4f841c93, type: 3}
-  GoldValue: 400
+  ID: 5
+  DisplayName: Wood
+  Description: A piece of wood, previously a part of some tree.
+  Icon: {fileID: 21300000, guid: 9f69e9a15feae494db46c2744b58252d, type: 3}
+  MaxStackSize: 10
+  ItemPrefab: {fileID: 8232824848056575545, guid: 8db4119b04aecf140b499fde21590347, type: 3}
+  GoldValue: 25

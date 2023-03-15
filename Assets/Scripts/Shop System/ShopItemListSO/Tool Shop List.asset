@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 951db3154e351714bad7898bf14b2a37, type: 3}
-  m_Name: Alcoholic Shop List
+  m_Name: Tool Shop List
   m_EditorClassIdentifier: 
   items:
-  - ItemData: {fileID: 11400000, guid: 9fc7475a01493b54a888f62e650228b1, type: 2}
-    Amount: 200
-  maxAllowedGold: 500
-  sellMarkUp: 0.5
-  buyMarkUp: 0.5
+  - ItemData: {fileID: 11400000, guid: bd09950520ac89847b42b07e6f394b7c, type: 2}
+    Amount: 1
+  - ItemData: {fileID: 11400000, guid: b9379d497a42b5c468a014106680331f, type: 2}
+    Amount: 1
+  maxAllowedGold: 10000
+  sellMarkUp: 0
+  buyMarkUp: 0

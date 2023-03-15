@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
     private void Awake()
     {
         SaveLoad.OnLoadGameEvent += SpawnItems;
+        //SaveLoad.OnLoadGameEvent += SpawnResourceNodes;
     }
     private void SpawnItems()
     {
@@ -18,4 +19,15 @@ public class ItemManager : MonoBehaviour
         }
         Debug.Log("It's morbin time");
     }
+/*
+    private void SpawnResourceNodes()
+    {
+        foreach (var item in SaveGameManager.data.activeResourceNodes)
+        {
+            //Debug.Log(item);
+            var tempObj = Instantiate(item.Value.ResourceNodePrefab, item.Value.ItemPosition, Quaternion.identity);
+            var newResourceNode = tempObj.GetComponent<ResourceNode>();
+            newResourceNode.AmountLeft = item.Value.ResourceLeft;
+        }
+    }*/
 }
