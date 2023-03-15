@@ -37,7 +37,7 @@ public class ShopKeeper : MonoBehaviour
 
     private void Start()
     {
-        if (!SaveGameManager.data.shopKeeperDictionary.ContainsKey(_id)) SaveGameManager.data.shopKeeperDictionary.Add(_id, _shopSaveData);;
+        if (!SaveGameManager.data.shopKeeperDictionary.ContainsKey(_id)) SaveGameManager.data.shopKeeperDictionary.Add(_id, _shopSaveData);
     }
 
     private void OnEnable()
@@ -47,7 +47,7 @@ public class ShopKeeper : MonoBehaviour
 
     private void OnDisable()
     {
-        SaveLoad.OnLoadGame += LoadInventory;
+        SaveLoad.OnLoadGame -= LoadInventory;
     }
 
     private void LoadInventory(SaveData data)

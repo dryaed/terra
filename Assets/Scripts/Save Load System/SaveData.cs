@@ -11,8 +11,9 @@ public class SaveData
     public List<string> collectedItems; // stores collected items to be deleted
     public SerializableDictionary<string, ItemPickupSaveData> activeItems; // stores items to be rendered in-world
 
-    public List<string> depletedResourceNodes;
-    public SerializableDictionary<string, ResourceNodeSaveData> activeResourceNodes;
+    //public List<string> depletedResourceNodes;
+    //public SerializableDictionary<string, ResourceNodeSaveData> activeResourceNodes;
+    public SerializableDictionary<string, ResourceNodeSaveData> resourceNodeDictionary;
 
     public SerializableDictionary<string, InventorySaveData> chestDictionary; // stores chest data
     public SerializableDictionary<string, ShopSaveData> shopKeeperDictionary;
@@ -25,8 +26,9 @@ public class SaveData
         collectedItems = new List<string>();
         activeItems = new SerializableDictionary<string, ItemPickupSaveData>();
 
-        depletedResourceNodes = new List<string>();
-        activeResourceNodes = new SerializableDictionary<string, ResourceNodeSaveData>();
+        //depletedResourceNodes = new List<string>();
+        //activeResourceNodes = new SerializableDictionary<string, ResourceNodeSaveData>();
+        resourceNodeDictionary = new SerializableDictionary<string, ResourceNodeSaveData>();
         
         chestDictionary = new SerializableDictionary<string, InventorySaveData>();
         shopKeeperDictionary = new SerializableDictionary<string, ShopSaveData>();
