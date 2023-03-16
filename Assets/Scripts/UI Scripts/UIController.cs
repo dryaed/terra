@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private TutorialDisplay tutorialDisplay;
     [SerializeField] private ShopKeeperDisplay shopKeeperDisplay;
     [SerializeField] private DynamicInventoryDisplay inventoryPanel;
     public DynamicInventoryDisplay playerBackpackPanel;
@@ -16,6 +17,7 @@ public class UIController : MonoBehaviour
         shopKeeperDisplay.gameObject.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
         playerBackpackPanel.gameObject.SetActive(false);
+        tutorialDisplay.gameObject.SetActive(true);
     }
 
     private void OnEnable()
@@ -34,9 +36,11 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (shopKeeperDisplay.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) shopKeeperDisplay.gameObject.SetActive(false);
-        if (inventoryPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) inventoryPanel.gameObject.SetActive(false);
-        if (playerBackpackPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) playerBackpackPanel.gameObject.SetActive(false);
+        if (!Keyboard.current.escapeKey.wasPressedThisFrame) return;
+        if (tutorialDisplay.gameObject.activeInHierarchy) tutorialDisplay.gameObject.SetActive(false);
+        if (shopKeeperDisplay.gameObject.activeInHierarchy) shopKeeperDisplay.gameObject.SetActive(false);
+        if (inventoryPanel.gameObject.activeInHierarchy) inventoryPanel.gameObject.SetActive(false);
+        if (playerBackpackPanel.gameObject.activeInHierarchy) playerBackpackPanel.gameObject.SetActive(false);
     }
     
     private void DisplayShopWindow(ShopSystem shopSystem, PlayerInventoryHolder playerInventory)

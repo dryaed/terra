@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
         
         // switch camera mode between fps and tps
+        /*
         if (Input.GetKeyDown(KeyCode.C))
         {
             isFPS = !isFPS;
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 cam2.SetActive(false);
             }
         }
+        */
         // Left alt allows to toggle mouse display
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {

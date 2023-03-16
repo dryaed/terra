@@ -21,6 +21,9 @@ public class ResourceNode : MonoBehaviour
     private string _id;
     private ResourceNodeSaveData _saveData;
 
+    public string ToolTypeRequired => toolTypeRequired;
+    public InventoryItemData ResourceItemData => resourceItemData;
+
     private void Awake()
     {
         _id = GetComponent<UniqueID>().ID;
