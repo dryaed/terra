@@ -32,7 +32,7 @@ public class ItemPickupInteraction : Interactable
     void Start()
     {
         id = GetComponent<UniqueID>().ID;
-        SaveGameManager.data.activeItems.Add(id, saveData);
+        if (!SaveGameManager.data.activeItems.ContainsKey(id)) SaveGameManager.data.activeItems.Add(id, saveData);
 
         player = GameObject.Find("First Person Player"); // gets the player game object
         pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);

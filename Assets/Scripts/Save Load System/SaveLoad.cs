@@ -20,6 +20,8 @@ public static class SaveLoad
 
         string dir = Application.persistentDataPath + saveDirectory;
 
+        Delete();
+
         if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
         string json = JsonUtility.ToJson(data, true);
