@@ -32,7 +32,7 @@ public class ResourceNode : MonoBehaviour
     private void SaveResourceNodeData()
     {
         _saveData = new ResourceNodeSaveData(resourceItemData, _resourceLeft, transform.position, transform.rotation);
-        SaveGameManager.data.resourceNodeDictionary.Add(_id, _saveData);
+        if (!SaveGameManager.data.resourceNodeDictionary.ContainsKey(_id)) SaveGameManager.data.resourceNodeDictionary.Add(_id, _saveData);
     }
 
     private void Start()
