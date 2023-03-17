@@ -10,8 +10,8 @@ public class CustomBuildProcessor : IPreprocessBuildWithReport
 
     public void OnPreprocessBuild(BuildReport report)
     {
-        var db = Resources.Load<ItemDatabase>("ItemDatabase");
-        db.SetItemIDs();
+        //var db = Resources.Load<ItemDatabase>("ItemDatabase");
+        //db.SetItemIDs();
         Debug.Log("MyCustomBuildProcessor.OnPreprocessBuild for target " + report.summary.platform + " at path " + report.summary.outputPath);
     }
 }

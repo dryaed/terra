@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   DisplayName: Rocksmasher
-  Description: Hammer used to smash rocks into pieces.
+  Description: 'Hammer used to smash rocks into pieces.
+
+    Tool Type: Rock'
   Icon: {fileID: 21300000, guid: 6ba8437208ad940459e4c36d2347c325, type: 3}
   MaxStackSize: 1
   ItemPrefab: {fileID: 6619094619505340713, guid: 2a4b5ca17f3290946b148573c547bb2c, type: 3}
