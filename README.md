@@ -8,7 +8,7 @@
 <li>Trading with NPCs
 <li>Placing and picking up items
 <li>Steam integration!
-<li>(wip) Tutorial
+<li>Tutorial
 </ul>
 
 #
