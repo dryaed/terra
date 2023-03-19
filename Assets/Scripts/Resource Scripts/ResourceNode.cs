@@ -36,6 +36,11 @@ public class ResourceNode : MonoBehaviour
     {
         _saveData = new ResourceNodeSaveData(resourceItemData, _resourceLeft, transform.position, transform.rotation);
         if (!SaveGameManager.data.resourceNodeDictionary.ContainsKey(_id)) SaveGameManager.data.resourceNodeDictionary.Add(_id, _saveData);
+        else
+        {
+            SaveGameManager.data.resourceNodeDictionary.Remove(_id);
+            SaveGameManager.data.resourceNodeDictionary.Add(_id, _saveData);
+        }
     }
 
     private void Start()
@@ -43,7 +48,7 @@ public class ResourceNode : MonoBehaviour
         _resourceLeft = resourceNodeSize;
         _player = GameObject.Find("First Person Player"); // gets the player game object
         _hotbarReference = GameObject.Find("Player Hotbar");
-        
+        //SaveResourceNodeData();
         //_id = GetComponent<UniqueID>().ID;
         //SaveGameManager.data.activeResourceNodes.Add(_id, _saveData);
         
