@@ -72,16 +72,13 @@ public class HotbarDisplay : StaticInventoryDisplay
 
     private void UseItem()
     {
-        //implement checks so that you don't use items when using the UI | navigating the inventories
-        if (slots[_currentIndex].AssignedInventorySlot.ItemData == null) return;
-        slots[_currentIndex].AssignedInventorySlot.ItemData.UseItem();
+        
     }
 
     private void DropItem()
     {
         if (slots[_currentIndex].AssignedInventorySlot.ItemData == null) return;
-        slots[_currentIndex].AssignedInventorySlot.ItemData.DropItem();
-        
+
         if (slots[_currentIndex].AssignedInventorySlot.ItemData.ItemPrefab == null) return;
             
         Instantiate(slots[_currentIndex].AssignedInventorySlot.ItemData.ItemPrefab, _playerTransform.position + _playerTransform.forward * _dropOffset * Random.Range(2f, 4f) - _playerTransform.up * _dropHeight, Quaternion.identity);                

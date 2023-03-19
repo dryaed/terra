@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ChestInventory : InventoryHolder
 {
-    public void Niggers()
+    public void Interact()
     {
         OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem, 0); // calls the DisplayInventory() using the primaryInventorySystem of this specific object 
     }

@@ -18,14 +18,4 @@ public class InventoryItemData : ScriptableObject
     public int MaxStackSize; // Item Maximum Stack size for the inventory system
     public GameObject ItemPrefab; // object that is used to spawn the item in world
     public int GoldValue;
-
-    public void UseItem()
-    {
-        Debug.Log($"Using {DisplayName}");
-    }
-
-    public void DropItem()
-    {
-        Debug.Log($"Dropping {DisplayName}");
-    }
 }
